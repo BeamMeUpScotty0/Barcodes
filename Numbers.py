@@ -1,7 +1,3 @@
-# import the necessary packages
-#######
-####gfhfg
-
 import cv2
 import pytesseract
 
@@ -16,9 +12,6 @@ edged = cv2.Canny(gray, 10, 250)
 print(pytesseract.image_to_string(image))
 
 
-
 cv2.imshow("Output", image)
-
 cv2.imshow("Edged", edged)
-
 cv2.waitKey(0)
