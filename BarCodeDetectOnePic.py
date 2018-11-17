@@ -1,10 +1,17 @@
-# import the necessary packages
+
 import numpy as np
+import cv2
+import glob
+
+from os import listdir
+from os.path import isfile, join
+import numpy
 import cv2
 
 
 
-image = cv2.imread("/home/kris/Рабочий стол/o.jpg")
+image0 = cv2.imread("/home/kris/Рабочий стол/resized/P81117-173535.jpg")
+image = cv2.resize(images, (360, 460))
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 
@@ -18,6 +25,10 @@ gradient = cv2.convertScaleAbs(gradient)
 blurred = cv2.blur(gradient, (9, 9))
 (_, thresh) = cv2.threshold(blurred, 225, 255, cv2.THRESH_BINARY)
 # construct a closing kernel and apply it to the thresholded image
+
+
+
+
 #21- много мелких деталей, 49 - крупное фот
 kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (49, 7))
 closed = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel)
@@ -37,6 +48,12 @@ box = np.int0(cv2.boxPoints(rect))
 # draw a bounding box arounded the detected barcode and display the
 # image
 cv2.drawContours(image, [box], -1, (0, 255, 0), 3)
+cv2.drawContours(closed, [box], -1, (255, 255, 255), 3)
+
+
 cv2.imshow("Image0", closed)
 cv2.imshow("Image", image)
+
+cv2.imwrite('/home/kris/Рабочий стол/Desktop/cv/small/0pic.jpg', image)
+cv2.imwrite('/home/kris/Рабочий стол/Desktop/cv/small/pic.jpg', closed)
 cv2.waitKey(0)
