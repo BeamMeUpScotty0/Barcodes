@@ -7,6 +7,7 @@ from os.path import isfile,join
 path = r'/home/kris/Рабочий стол/no_res' # Source Folder
 dstpath = r'/home/kris/Рабочий стол/no_bw' # Destination Folder
 dstpath2 = r'/home/kris/Рабочий стол/no_framed' # Destination Folder
+
 c=0
 try:
     makedirs(dstpath)
