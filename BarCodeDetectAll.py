@@ -14,20 +14,18 @@ c = 0
 
 print("Resizing...")
 
-directory = '/home/kris/Рабочий стол/photo' #from
-new_directory = '/home/kris/Рабочий стол/resized' #to
+directory = '/home/kris/Рабочий стол/Dataset/еще датасет/New Folder//'
+new_directory = '/home/kris/Рабочий стол/Dataset/еще датасет/small/'
 
 
-path = r'/home/kris/Рабочий стол/resized' # from
-dstpath = r'/home/kris/Рабочий стол/BW' # to (black$white)
-dstpath2 = r'/home/kris/Рабочий стол/framed' # to (in color)
-
-
+path = r'/home/kris/Рабочий стол/Dataset/еще датасет/train_with22/' # Source Folder
+dstpath = r'/home/kris/Рабочий стол/Dataset/еще датасет/Codes_farmed/' # Destination Folder
+dstpath2 = r'/home/kris/Рабочий стол/Dataset/еще датасет/Codes_BW/' # Destination Folder
 
 
 
 for file_name in os.listdir(directory):
-  print("Processing %s" % file_name)
+  print("Resizing %s" % file_name)
   image = Image.open(os.path.join(directory, file_name))
   new_dimensions = (360, 480)
   output = image.resize(new_dimensions, Image.ANTIALIAS)
@@ -38,7 +36,6 @@ for file_name in os.listdir(directory):
   c += 1
 
 print("All done ", c)
-
 
 
 
@@ -53,7 +50,7 @@ except:
 # Folder won't used
 files = [f for f in listdir(path) if isfile(join(path,f))]
 
-for image in files:
+for image in os.listdir(new_directory):
     try:
         img = cv2.imread(os.path.join(path,image))
         gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
@@ -88,12 +85,12 @@ for image in files:
         cv2.drawContours(closed, [box], -1, (255, 255, 255), 3)
 
 
-        dstPath = join(dstpath,image)
-        dstPath2 = join(dstpath, closed)
-        cv2.imwrite(dstPath,img)
+        dstPath = join(dstpath, image)
+        cv2.imwrite(dstPath, img)
+
+        dstPath2 = join(dstpath2, image)
         cv2.imwrite(dstPath2, closed)
 
 
     except:
         print ("{} is not converted".format(image))
-
