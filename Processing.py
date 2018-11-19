@@ -4,11 +4,10 @@ import cv2
 from os import listdir,makedirs
 from os.path import isfile,join
 
-path = r'/home/kris/Рабочий стол/no_res' # Source Folder
-dstpath = r'/home/kris/Рабочий стол/no_bw' # Destination Folder
-dstpath2 = r'/home/kris/Рабочий стол/no_framed' # Destination Folder
+path = r'/home/kris/Рабочий стол/Dataset/Train/Codes_small/' # Source Folder
+dstpath = r'/home/kris/Рабочий стол/Dataset/Train/Codes_BW2/' # Destination Folder
+dstpath2 = r'/home/kris/Рабочий стол/Dataset/Train/Codes_farmed2/' # Destination Folder
 
-c=0
 try:
     makedirs(dstpath)
 except:
@@ -49,12 +48,15 @@ for image in files:
         cv2.drawContours(closed, [box], -1, (255, 255, 255), 3)
 
 
-       # dstPath = join(dstpath, image)
-        dstPath2 = join(dstpath2, closed)
-       # cv2.imwrite(dstPath,img)
+        dstPath = join(dstpath, image)
+        dstPath2 = join(dstpath2, image)
+
+        cv2.imwrite(dstPath,img)
         cv2.imwrite(dstPath2, closed)
 
 
     except:
         print ("{} is not converted".format(image))
+
+
 
