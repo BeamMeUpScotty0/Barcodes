@@ -5,8 +5,8 @@ import glob
 
 c = 0
 
-directory = '/home/kris/Рабочий стол/no'
-new_directory = '/home/kris/Рабочий стол/no_res'
+directory = '/home/kris/Рабочий стол/Dataset/Train/No_Big/'
+new_directory = '/home/kris/Рабочий стол/Dataset/Train/No_Small/'
 
 for file_name in os.listdir(directory):
   print("Processing %s" % file_name)
