@@ -1,17 +1,15 @@
-
 import numpy as np
 import cv2
-import glob
 
 from os import listdir
 from os.path import isfile, join
-import numpy
-import cv2
 
 
 
-image0 = cv2.imread("/home/kris/Рабочий стол/resized/P81117-173535.jpg")
-image = cv2.resize(images, (360, 460))
+
+
+image = cv2.imread("/home/kris/Рабочий стол/Dataset/еще датасет/train_with22/05102009124.png")
+#image = cv2.resize(images, (360, 460))
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 
@@ -30,7 +28,7 @@ blurred = cv2.blur(gradient, (9, 9))
 
 
 #21- много мелких деталей, 49 - крупное фот
-kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (49, 7))
+kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (77, 7))
 closed = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel)
 
 closed = cv2.erode(closed, None, iterations = 4)
